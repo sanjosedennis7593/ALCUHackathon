@@ -1,0 +1,40 @@
+<div class="container">
+	<input type="text" class="form-control" width="100%" placeholder="Enter keyword" ng-model="searchProduct" >
+	<div class="col-md-12">
+  <table class="table table-bordered table-hover" ng-controller="ProductListCtrl">
+                                <thead>
+                                    <tr>
+                                        <th><center>Product Name</center></th>
+                        
+                                        <th><center>Image</center></th>
+                                          <th><center>Quantity</center></th>
+                                        <th><center>Price</center></th>
+                                       
+                            
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr class="animated fadeIn" dir-paginate="product in dataArr.Item | orderBy:+__cdata | itemsPerPage: 5 | filter:searchProduct" pagination-id="newsPagination2" repeat-loading>
+
+                                        <td>{{product.Title.__cdata}} ({{product.Location.__cdata}})
+                                            <br>
+                                            <p><i>Category: {{product.PrimaryCategoryName}}</i></p></td>
+                                 
+
+                                        <td><center><img src="{{product.PictureURL}}" width="75" height="75"></center></td>
+                             <td><center>{{product.Quantity}}</center></td>
+                                   <td>${{product.ConvertedCurrentPrice}}</td>
+                                  
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                         <div ng-controller="OtherController" class="col-xs-12 other-controller">
+                            
+                                  <div class="text-center">
+                                       <dir-pagination-controls boundary-links="true" pagination-id="newsPagination2" on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
+                                 </div>
+                        </div>
+	</div>
+</div>

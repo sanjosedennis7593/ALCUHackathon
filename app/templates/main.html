@@ -1,0 +1,49 @@
+<div class="container">
+
+    <div class="jumbotron animated bounce">
+  <h1><img class="animated rotateIn" src="pdm.png" width="150" height="150">&nbsp;Welcome to PDM e-Market</h1>
+ <center> <span class="marilao"><i>Pambayang Dalubhasaan ng Marilao Online Shopping</i></span></center>
+  
+</div>
+<br>
+
+    <input type="text" class="form-control txtbox" width="100%" placeholder="Enter keyword" ng-model="searchProduct" >
+
+<br>
+     <table class="table table-bordered table-hover" ng-controller="ProductCtrl" ng-init="loadData()">
+                                <thead>
+                                    <tr>
+                                        <th><center>Product Name</center></th>
+                        
+                                        <th><center>Image</center></th>
+                                          <th><center>Quantity</center></th>
+                                        <th><center>Price</center></th>
+                                       
+                            
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr  dir-paginate="product in products | itemsPerPage: 5 | filter:searchProduct" class="animated fadeIn" pagination-id="newsPagination2" repeat-loading>
+
+                                        <td>{{product.Title.__cdata}} ({{product.Location.__cdata}})
+                                            <br>
+                                            <p><i>Category: {{product.PrimaryCategoryName}}</i></p></td>
+                                 
+
+                                        <td><center><img src="{{product.PictureURL}}" width="75" height="75"></center></td>
+                             <td>{{product.Quantity}}</td>
+                                   <td>${{product.ConvertedCurrentPrice}}</td>
+                                  
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                         <div ng-controller="OtherController" class="col-xs-12 other-controller">
+                            
+                                  <div class="text-center">
+                                       <dir-pagination-controls boundary-links="true" pagination-id="newsPagination2" on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
+                                 </div>
+                        </div>
+                  
+</div>
